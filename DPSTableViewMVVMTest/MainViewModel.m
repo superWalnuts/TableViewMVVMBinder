@@ -8,8 +8,12 @@
 
 #import "MainViewModel.h"
 #import "SubViewModelOne.h"
+#import "SubViewModelTwo.h"
 @interface MainViewModel()
 @property (nonatomic,strong) NSArray<DPSSubViewModelProtocol> *viewModelArray;
+@property (nonatomic,strong) SubViewModelOne *subViewModelOne;
+@property (nonatomic,strong) SubViewModelTwo *subViewModelTwo;
+
 @end
 @implementation MainViewModel
 - (instancetype)init
@@ -23,7 +27,12 @@
 - (void)initSubViewModelArray
 {
     NSMutableArray *subViewModelArray = [NSMutableArray new];
-    [subViewModelArray addObject:[SubViewModelOne new]];
+    self.subViewModelOne = [SubViewModelOne new];
+    [subViewModelArray addObject:self.subViewModelOne];
+    
+    self.subViewModelTwo = [SubViewModelTwo new];
+    [subViewModelArray addObject:self.subViewModelTwo];
+
     self.viewModelArray = [subViewModelArray copy];
 }
 - (NSArray<DPSSubViewModelProtocol> *)subViewModelArray

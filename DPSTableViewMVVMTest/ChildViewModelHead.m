@@ -15,6 +15,9 @@
     if (type == 1) {
         self.titleText = @"SubViewModelOne";
     }
+    if (type == 2) {
+        self.titleText = @"SubViewModelTwo";
+    }
 }
 
 

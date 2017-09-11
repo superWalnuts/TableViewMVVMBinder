@@ -10,10 +10,20 @@
 
 @implementation DPSMVVMTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        [self initMVVMTableViewCell];
+    }
+    return self;
+}
+
+- (void)initMVVMTableViewCell
+{
     [self setSelectionStyle:UITableViewCellSelectionStyleNone];
     [self setBackgroundColor:[UIColor clearColor]];
+
 }
 
 - (void)setChildViewModel:(id<DPSChildViewModelProtocol>) childViewModel

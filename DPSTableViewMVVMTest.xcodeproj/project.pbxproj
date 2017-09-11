@@ -18,6 +18,9 @@
 		E13F2D4D1F5FD6C6006A1814 /* DPSTableViewMVVMTestUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = E13F2D4C1F5FD6C6006A1814 /* DPSTableViewMVVMTestUITests.m */; };
 		E13F2D5D1F5FD9BB006A1814 /* DPSTableMVVMBinder.m in Sources */ = {isa = PBXBuildFile; fileRef = E13F2D5C1F5FD9BB006A1814 /* DPSTableMVVMBinder.m */; };
 		E13F2D671F5FFBF3006A1814 /* DPSMVVMTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E13F2D661F5FFBF3006A1814 /* DPSMVVMTableViewCell.m */; };
+		E1A194871F66BC340040F8A9 /* SubViewModelTwo.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A194861F66BC340040F8A9 /* SubViewModelTwo.m */; };
+		E1A1948E1F66BEDB0040F8A9 /* ChildViewModelButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A1948D1F66BEDB0040F8A9 /* ChildViewModelButton.m */; };
+		E1A194911F66BEED0040F8A9 /* ChildViewButton.m in Sources */ = {isa = PBXBuildFile; fileRef = E1A194901F66BEED0040F8A9 /* ChildViewButton.m */; };
 		E1EE9D181F64372000466463 /* MainViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EE9D171F64372000466463 /* MainViewModel.m */; };
 		E1EE9D1D1F64399A00466463 /* SubViewModelOne.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EE9D1C1F64399A00466463 /* SubViewModelOne.m */; };
 		E1EE9D211F643A9200466463 /* ChildViewModelA.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EE9D201F643A9200466463 /* ChildViewModelA.m */; };
@@ -76,6 +79,12 @@
 		E13F2D651F5FFBF3006A1814 /* DPSMVVMTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPSMVVMTableViewCell.h; sourceTree = "<group>"; };
 		E13F2D661F5FFBF3006A1814 /* DPSMVVMTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DPSMVVMTableViewCell.m; sourceTree = "<group>"; };
 		E13F2D691F600DF6006A1814 /* DPSChildViewProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DPSChildViewProtocol.h; sourceTree = "<group>"; };
+		E1A194851F66BC340040F8A9 /* SubViewModelTwo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewModelTwo.h; sourceTree = "<group>"; };
+		E1A194861F66BC340040F8A9 /* SubViewModelTwo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubViewModelTwo.m; sourceTree = "<group>"; };
+		E1A1948C1F66BEDB0040F8A9 /* ChildViewModelButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewModelButton.h; sourceTree = "<group>"; };
+		E1A1948D1F66BEDB0040F8A9 /* ChildViewModelButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewModelButton.m; sourceTree = "<group>"; };
+		E1A1948F1F66BEED0040F8A9 /* ChildViewButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChildViewButton.h; sourceTree = "<group>"; };
+		E1A194901F66BEED0040F8A9 /* ChildViewButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChildViewButton.m; sourceTree = "<group>"; };
 		E1EE9D161F64372000466463 /* MainViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewModel.h; sourceTree = "<group>"; };
 		E1EE9D171F64372000466463 /* MainViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewModel.m; sourceTree = "<group>"; };
 		E1EE9D1B1F64399A00466463 /* SubViewModelOne.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubViewModelOne.h; sourceTree = "<group>"; };
@@ -174,6 +183,8 @@
 		E13F2D261F5FD6C5006A1814 /* DPSTableViewMVVMTest */ = {
 			isa = PBXGroup;
 			children = (
+				E1EE9D1A1F64396800466463 /* subViewModel */,
+				E1EE9D1E1F643A6100466463 /* childViewModel */,
 				E1EE9D151F64363900466463 /* mainViewModel */,
 				E13F2D2A1F5FD6C5006A1814 /* AppDelegate.h */,
 				E13F2D2B1F5FD6C5006A1814 /* AppDelegate.m */,
@@ -241,41 +252,77 @@
 			name = protocol;
 			sourceTree = "<group>";
 		};
-		E1EE9D151F64363900466463 /* mainViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				E1EE9D1E1F643A6100466463 /* childViewModel */,
-				E1EE9D1A1F64396800466463 /* subViewModelOne */,
-				E1EE9D161F64372000466463 /* MainViewModel.h */,
-				E1EE9D171F64372000466463 /* MainViewModel.m */,
-			);
-			name = mainViewModel;
-			sourceTree = "<group>";
-		};
-		E1EE9D1A1F64396800466463 /* subViewModelOne */ = {
-			isa = PBXGroup;
-			children = (
-				E1EE9D1B1F64399A00466463 /* SubViewModelOne.h */,
-				E1EE9D1C1F64399A00466463 /* SubViewModelOne.m */,
-			);
-			name = subViewModelOne;
-			sourceTree = "<group>";
-		};
-		E1EE9D1E1F643A6100466463 /* childViewModel */ = {
+		E1A194881F66BE610040F8A9 /* childViewModelA */ = {
 			isa = PBXGroup;
 			children = (
 				E1EE9D1F1F643A9200466463 /* ChildViewModelA.h */,
 				E1EE9D201F643A9200466463 /* ChildViewModelA.m */,
 				E1EE9D221F643B9300466463 /* ChildViewA.h */,
 				E1EE9D231F643B9300466463 /* ChildViewA.m */,
+			);
+			name = childViewModelA;
+			sourceTree = "<group>";
+		};
+		E1A194891F66BE720040F8A9 /* childViewModelHead */ = {
+			isa = PBXGroup;
+			children = (
 				E1EE9D2A1F651C7D00466463 /* ChildViewModelHead.h */,
 				E1EE9D2B1F651C7D00466463 /* ChildViewModelHead.m */,
 				E1EE9D2D1F651D0500466463 /* ChildViewHead.h */,
 				E1EE9D2E1F651D0500466463 /* ChildViewHead.m */,
+			);
+			name = childViewModelHead;
+			sourceTree = "<group>";
+		};
+		E1A1948A1F66BE7F0040F8A9 /* childViewModelImage */ = {
+			isa = PBXGroup;
+			children = (
 				E1EE9D331F65262400466463 /* ChildViewModelImage.h */,
 				E1EE9D341F65262400466463 /* ChildViewModelImage.m */,
 				E1EE9D361F65271B00466463 /* ChildViewImage.h */,
 				E1EE9D371F65271B00466463 /* ChildViewImage.m */,
+			);
+			name = childViewModelImage;
+			sourceTree = "<group>";
+		};
+		E1A1948B1F66BE960040F8A9 /* childViewModelButton */ = {
+			isa = PBXGroup;
+			children = (
+				E1A1948C1F66BEDB0040F8A9 /* ChildViewModelButton.h */,
+				E1A1948D1F66BEDB0040F8A9 /* ChildViewModelButton.m */,
+				E1A1948F1F66BEED0040F8A9 /* ChildViewButton.h */,
+				E1A194901F66BEED0040F8A9 /* ChildViewButton.m */,
+			);
+			name = childViewModelButton;
+			sourceTree = "<group>";
+		};
+		E1EE9D151F64363900466463 /* mainViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E1EE9D161F64372000466463 /* MainViewModel.h */,
+				E1EE9D171F64372000466463 /* MainViewModel.m */,
+			);
+			name = mainViewModel;
+			sourceTree = "<group>";
+		};
+		E1EE9D1A1F64396800466463 /* subViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E1EE9D1B1F64399A00466463 /* SubViewModelOne.h */,
+				E1EE9D1C1F64399A00466463 /* SubViewModelOne.m */,
+				E1A194851F66BC340040F8A9 /* SubViewModelTwo.h */,
+				E1A194861F66BC340040F8A9 /* SubViewModelTwo.m */,
+			);
+			name = subViewModel;
+			sourceTree = "<group>";
+		};
+		E1EE9D1E1F643A6100466463 /* childViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E1A1948B1F66BE960040F8A9 /* childViewModelButton */,
+				E1A1948A1F66BE7F0040F8A9 /* childViewModelImage */,
+				E1A194891F66BE720040F8A9 /* childViewModelHead */,
+				E1A194881F66BE610040F8A9 /* childViewModelA */,
 			);
 			name = childViewModel;
 			sourceTree = "<group>";
@@ -474,14 +521,17 @@
 				E1EE9D321F65222B00466463 /* DPSColor.m in Sources */,
 				E13F2D2F1F5FD6C5006A1814 /* ViewController.m in Sources */,
 				E13F2D2C1F5FD6C5006A1814 /* AppDelegate.m in Sources */,
+				E1A1948E1F66BEDB0040F8A9 /* ChildViewModelButton.m in Sources */,
 				E1EE9D241F643B9300466463 /* ChildViewA.m in Sources */,
 				E106B92D1F65371F000AE819 /* DPSArrayDiffTool.m in Sources */,
 				E1EE9D1D1F64399A00466463 /* SubViewModelOne.m in Sources */,
 				E1EE9D181F64372000466463 /* MainViewModel.m in Sources */,
 				E1EE9D211F643A9200466463 /* ChildViewModelA.m in Sources */,
+				E1A194871F66BC340040F8A9 /* SubViewModelTwo.m in Sources */,
 				E13F2D671F5FFBF3006A1814 /* DPSMVVMTableViewCell.m in Sources */,
 				E13F2D291F5FD6C5006A1814 /* main.m in Sources */,
 				E1EE9D351F65262400466463 /* ChildViewModelImage.m in Sources */,
+				E1A194911F66BEED0040F8A9 /* ChildViewButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

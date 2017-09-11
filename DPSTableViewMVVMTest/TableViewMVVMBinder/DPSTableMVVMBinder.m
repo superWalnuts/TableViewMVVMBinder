@@ -84,6 +84,10 @@
                 __strong typeof (self) strongSelf = weakSelf;
                 [strongSelf insertChildModelWithAnimation:subViewModel animation:animation];
             }];
+            [subViewModel setDeleteChildModelWithAnimation:^(id<DPSSubViewModelProtocol> subViewModel,UITableViewRowAnimation animation){
+                __strong typeof (self) strongSelf = weakSelf;
+                [strongSelf deleteChildModelWithAnimation:subViewModel animation:animation];
+            }];
         }
     }
 }
@@ -134,7 +138,33 @@
     }
     [self.tableView insertRowsAtIndexPaths:indexPathArray withRowAnimation:animation];
 }
-
+//SubViewModel中添加一个childViewModel中的数据
+- (void)deleteChildModelWithAnimation:(id<DPSSubViewModelProtocol>) viewModel animation:(UITableViewRowAnimation)animation
+{
+    NSInteger section = [self.subViewModelArray indexOfObject:viewModel];
+    if (section == NSNotFound) {
+        return;
+    }
+    id<DPSSubViewModelProtocol> subViewModel = [self.subViewModelArray objectAtIndex:section];
+    NSMutableArray<DPSChildViewModelProtocol> *newChildViewModelArray = [[subViewModel childViewModelArray] mutableCopy];
+    NSMutableArray<DPSChildViewModelProtocol> *oldChildViewModelArray = [self.allChildViewModelArray objectAtIndex:section];
+    [self.allChildViewModelArray replaceObjectAtIndex:section withObject:newChildViewModelArray];
+    
+    DPSDiffInfo *diffInfo = [DPSArrayDiffTool diffArrayChangeWithOldArray:oldChildViewModelArray.copy newArray:newChildViewModelArray.copy];
+    if (diffInfo.addItemArray.count > 0) {
+        NSAssert(NO, @"Only delete ChildViewModel");
+    }
+    NSMutableArray *indexPathArray = [NSMutableArray new];
+    for (id<DPSChildViewModelProtocol> reduceChildViewModel in diffInfo.reduceItemArray) {
+        NSInteger index = [newChildViewModelArray indexOfObject:reduceChildViewModel];
+        if (section == NSNotFound) {
+            continue;
+        }
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:section];
+        [indexPathArray addObject:indexPath];
+    }
+    [self.tableView deleteRowsAtIndexPaths:indexPathArray withRowAnimation:animation];
+}
 //tableView DataSource 和 delegate
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -16,5 +16,6 @@
 
 @property (nonatomic, copy) void(^updateChildModelArray)(id<DPSSubViewModelProtocol> subViewModel);
 @property (nonatomic, copy) void(^insertChildModelWithAnimation)(id<DPSSubViewModelProtocol> subViewModel,UITableViewRowAnimation animation);
+@property (nonatomic, copy) void(^deleteChildModelWithAnimation)(id<DPSSubViewModelProtocol> subViewModel,UITableViewRowAnimation animation);
 
 @end
