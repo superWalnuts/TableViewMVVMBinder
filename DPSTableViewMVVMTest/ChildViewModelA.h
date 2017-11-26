@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "DPSChildViewModelProtocol.h"
 @interface ChildViewModelA : NSObject<DPSChildViewModelProtocol>
-@property(nonatomic,assign) NSNumber *colorRGB;
-@property(nonatomic,assign) NSString *colorStr;
+@property(nonatomic,strong) NSNumber *colorRGB;
+@property(nonatomic,strong) NSString *colorStr;
 
 @end

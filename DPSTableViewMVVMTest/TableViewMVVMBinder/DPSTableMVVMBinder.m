@@ -80,10 +80,16 @@
                 __strong typeof (self) strongSelf = weakSelf;
                 [strongSelf updateChildModelArrayWithModel:subViewModel];
             }];
+        }
+        if ([subViewModel respondsToSelector:@selector(setInsertChildModelWithAnimation:)]) {
+            __weak typeof (self) weakSelf = self;
             [subViewModel setInsertChildModelWithAnimation:^(id<DPSSubViewModelProtocol> subViewModel,UITableViewRowAnimation animation){
                 __strong typeof (self) strongSelf = weakSelf;
                 [strongSelf insertChildModelWithAnimation:subViewModel animation:animation];
             }];
+        }
+        if ([subViewModel respondsToSelector:@selector(setDeleteChildModelWithAnimation:)]) {
+            __weak typeof (self) weakSelf = self;
             [subViewModel setDeleteChildModelWithAnimation:^(id<DPSSubViewModelProtocol> subViewModel,UITableViewRowAnimation animation){
                 __strong typeof (self) strongSelf = weakSelf;
                 [strongSelf deleteChildModelWithAnimation:subViewModel animation:animation];
@@ -95,7 +101,9 @@
 - (void)notificationSubViewModelReload
 {
     for (id<DPSSubViewModelProtocol> subViewModel in self.subViewModelArray) {
-        [subViewModel notificationReloadData];
+        if ([subViewModel respondsToSelector:@selector(notificationReloadData)]) {
+            [subViewModel notificationReloadData];
+        }
     }
 }
 
@@ -156,7 +164,7 @@
     }
     NSMutableArray *indexPathArray = [NSMutableArray new];
     for (id<DPSChildViewModelProtocol> reduceChildViewModel in diffInfo.reduceItemArray) {
-        NSInteger index = [newChildViewModelArray indexOfObject:reduceChildViewModel];
+        NSInteger index = [oldChildViewModelArray indexOfObject:reduceChildViewModel];
         if (section == NSNotFound) {
             continue;
         }
@@ -165,7 +173,10 @@
     }
     [self.tableView deleteRowsAtIndexPaths:indexPathArray withRowAnimation:animation];
 }
-//tableView DataSource 和 delegate
+
+
+#pragma mark tableView DataSource 和 delegate
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return self.allChildViewModelArray.count;
@@ -190,6 +201,13 @@
     DPSMVVMTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellModel.childViewReuseIdentifier];
     [cell setChildViewModel:cellModel];
     return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id<DPSSubViewModelProtocol> subViewModel = [self.subViewModelArray objectAtIndex:indexPath.section];
+    if ([subViewModel respondsToSelector:@selector(childViewClicked:)]) {
+        [subViewModel childViewClicked:indexPath.row];
+    }
 }
 
 @end

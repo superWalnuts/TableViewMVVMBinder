@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DPSChildViewProtocol.h"
 
-@interface ChildViewButton : NSObject
+@interface ChildViewButton : UIView<DPSChildViewProtocol>
 
 @end

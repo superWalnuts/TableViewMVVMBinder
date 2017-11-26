@@ -10,6 +10,5 @@
 #import "DPSChildViewModelProtocol.h"
 
 @interface ChildViewModelButton : NSObject<DPSChildViewModelProtocol>
-@property (nonatomic, copy) void(^childViewModelButtonClick)();
 @property (nonatomic, strong) NSString *buttonText;
 @end

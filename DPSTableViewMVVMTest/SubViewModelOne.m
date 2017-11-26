@@ -13,6 +13,8 @@
 @property(nonatomic,strong) NSMutableArray<DPSChildViewModelProtocol> *viewModelArray;
 @end
 @implementation SubViewModelOne
+@synthesize updateChildModelArray;
+@synthesize insertChildModelWithAnimation;
 - (instancetype)init
 {
     self = [super init];

@@ -7,14 +7,17 @@
 //
 
 #import "SubViewModelTwo.h"
-#import "ChildViewModelA.h"
 #import "ChildViewModelHead.h"
 #import "ChildViewModelImage.h"
-
+#import "ChildViewModelButton.h"
+#import "ChildViewModelA.h"
+#import <ReactiveObjC/ReactiveObjC.h>
 @interface SubViewModelTwo()
 @property(nonatomic,strong) NSMutableArray<DPSChildViewModelProtocol> *viewModelArray;
 @end
 @implementation SubViewModelTwo
+@synthesize insertChildModelWithAnimation;
+@synthesize deleteChildModelWithAnimation;
 - (instancetype)init
 {
     self = [super init];
@@ -29,7 +32,42 @@
     [headModel updateChildViewModelHeadWithType:2];
     self.viewModelArray = [NSMutableArray<DPSChildViewModelProtocol> new];
     [self.viewModelArray addObject:headModel];
-    [self getSubViewModelNetWorkData];
+    
+    ChildViewModelButton *model = [ChildViewModelButton new];
+    model.buttonText = @"Add";
+    [self.viewModelArray addObject:model];
+    
+    ChildViewModelButton *modelReduce = [ChildViewModelButton new];
+    modelReduce.buttonText = @"Reduce";
+    [self.viewModelArray addObject:modelReduce];
+}
+
+- (void)addModel
+{
+    ChildViewModelA *modelA = [ChildViewModelA new];
+    modelA.colorRGB = @(0xfa6543);
+    modelA.colorStr = [NSString stringWithFormat:@"这是第%lu个Model",(unsigned long)self.viewModelArray.count];
+    [self.viewModelArray addObject:modelA];
+    self.insertChildModelWithAnimation(self,UITableViewRowAnimationTop);
+}
+
+- (void)reduceModel
+{
+    if (self.viewModelArray.count <= 3) {
+        return;
+    }
+    [self.viewModelArray removeObjectAtIndex:self.viewModelArray.count-1];
+    self.deleteChildModelWithAnimation(self, UITableViewRowAnimationTop);
+}
+- (void)childViewClicked:(NSInteger)index
+{
+    if (index == 1) {
+        [self addModel];
+    }
+    
+    if (index == 2) {
+        [self reduceModel];
+    }
 }
 - (NSArray<DPSChildViewModelProtocol> *)childViewModelArray
 {
@@ -38,42 +76,10 @@
 
 - (void)notificationReloadData
 {
-    [self getSubViewModelNetWorkData];
 }
 - (NSArray<NSString *> *)reuseIdentifierArray
 {
-    return @[[ChildViewModelA childViewReuseIdentifier],[ChildViewModelHead childViewReuseIdentifier],[ChildViewModelImage childViewReuseIdentifier]];
+    return @[[ChildViewModelButton childViewReuseIdentifier],[ChildViewModelHead childViewReuseIdentifier],[ChildViewModelImage childViewReuseIdentifier],[ChildViewModelA childViewReuseIdentifier]];
 }
 
-
-
-//模仿网络请求
-- (void)getSubViewModelNetWorkData
-{
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        ChildViewModelA *modelA = [ChildViewModelA new];
-        modelA.colorRGB = @(0xfa6543);
-        modelA.colorStr = @"0xfa6543";
-        [self.viewModelArray addObject:modelA];
-        
-        self.updateChildModelArray(self);
-    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        ChildViewModelA *modelA = [ChildViewModelA new];
-        modelA.colorRGB = @(0x018bf2);
-        modelA.colorStr = @"0x018bf2";
-        [self.viewModelArray addObject:modelA];
-        self.insertChildModelWithAnimation(self,UITableViewRowAnimationTop);
-    });
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        ChildViewModelImage *model = [ChildViewModelImage new];
-        model.firstImageName = @"imageOne";
-        model.secondImageName = @"ImageTwo";
-        [self.viewModelArray addObject:model];
-        self.insertChildModelWithAnimation(self,UITableViewRowAnimationTop);
-    });
-}
 @end
